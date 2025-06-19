@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('skills', SkillController::class);
-    Route::resource('sertifikats', SertifikatController::class);
+    Route::resource('sertifikat', SertifikatController::class);
 });
 
 

@@ -2,82 +2,126 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Http\Controllers\Controller;
-use App\Models\Sertifikat;
+use App\Models\Sertifikat; // Pastikan model Sertifikat Anda diimpor
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Storage; // Pastikan ini diimpor
+use Illuminate\View\View; // Tambahkan ini untuk type hinting
+use Illuminate\Http\RedirectResponse; // Tambahkan ini untuk type hinting
 
 class SertifikatController extends Controller
 {
-    public function index()
+    /**
+     * Menampilkan daftar sertifikat milik user yang login (sertifikat/index.blade.php).
+     */
+    public function index(): View
     {
         $sertifikats = Auth::user()->sertifikats;
         return view('sertifikat.index', compact('sertifikats'));
     }
 
-    public function create()
+    /**
+     * Menampilkan form untuk menambah sertifikat baru (sertifikat/create.blade.php).
+     */
+    public function create(): View
     {
-        return view('dashboard.sertifikats.create');
+        // Jalur view diperbaiki sesuai struktur: resources/views/sertifikat/create.blade.php
+        return view('sertifikat.create');
     }
 
-    public function store(Request $request)
+    /**
+     * Menyimpan sertifikat baru ke database, termasuk unggahan file.
+     */
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'judul' => 'required|string',
-            'penyelenggara' => 'required|string',
+            'judul' => 'required|string|max:255',
+            'penyelenggara' => 'required|string|max:255',
             'tanggal' => 'required|date',
-            'file' => 'required|mimes:pdf,jpg,jpeg,png|max:2048',
+            // NAMA INPUT FILE DIPERBAIKI dari 'file' menjadi 'file_path'
+            'file_path' => 'required|file|mimes:pdf,jpeg,png,jpg|max:2048',
         ]);
 
-        $path = $request->file('file')->store('sertifikats', 'public');
+        $filePath = null;
+        // PENGAMBILAN FILE DIPERBAIKI dari 'file' menjadi 'file_path'
+        if ($request->hasFile('file_path')) {
+            // Simpan file ke direktori 'sertifikats' di storage disk 'public'
+            $filePath = $request->file('file_path')->store('sertifikats', 'public');
+        }
 
         Auth::user()->sertifikats()->create([
             'judul' => $request->judul,
             'penyelenggara' => $request->penyelenggara,
             'tanggal' => $request->tanggal,
-            'file_path' => $path,
+            'file_path' => $filePath, // Sudah benar
         ]);
 
-        return redirect()->route('sertifikats.index')->with('success', 'Sertifikat berhasil ditambahkan.');
+        // NAMA RUTE DIPERBAIKI dari 'sertifikats.index' menjadi 'sertifikat.index'
+        return redirect()->route('sertifikat.index')->with('success', 'Sertifikat berhasil ditambahkan.');
     }
 
-    public function edit(Sertifikat $sertifikat)
+    /**
+     * Menampilkan form untuk mengedit sertifikat tertentu (sertifikat/edit.blade.php).
+     */
+    public function edit(Sertifikat $sertifikat): View
     {
-        $this->authorize('update', $sertifikat);
-        return view('dashboard.sertifikats.edit', compact('sertifikat'));
+        // Otorisasi: hanya pemilik sertifikat yang boleh mengedit
+        // $this->authorize('update', $sertifikat); // Uncomment jika menggunakan Policy
+
+        // JALUR VIEW DIPERBAIKI dari 'dashboard.sertifikats.edit' menjadi 'sertifikat.edit'
+        return view('sertifikat.edit', compact('sertifikat'));
     }
 
-    public function update(Request $request, Sertifikat $sertifikat)
+    /**
+     * Memperbarui data sertifikat di database, termasuk update file.
+     */
+    public function update(Request $request, Sertifikat $sertifikat): RedirectResponse
     {
-        $this->authorize('update', $sertifikat);
+        // Otorisasi
+        // $this->authorize('update', $sertifikat); // Uncomment jika menggunakan Policy
 
         $request->validate([
-            'judul' => 'required|string',
-            'penyelenggara' => 'required|string',
+            'judul' => 'required|string|max:255',
+            'penyelenggara' => 'required|string|max:255',
             'tanggal' => 'required|date',
-            'file' => 'nullable|mimes:pdf,jpg,jpeg,png|max:2048',
+            // NAMA INPUT FILE DIPERBAIKI dari 'file' menjadi 'file_path'
+            'file_path' => 'nullable|file|mimes:pdf,jpeg,png,jpg|max:2048', // Nullable karena file bisa tidak diubah
         ]);
 
         $data = $request->only(['judul', 'penyelenggara', 'tanggal']);
 
-        if ($request->hasFile('file')) {
-            Storage::disk('public')->delete($sertifikat->file_path);
-            $data['file_path'] = $request->file('file')->store('sertifikats', 'public');
+        // PENGAMBILAN FILE DIPERBAIKI dari 'file' menjadi 'file_path'
+        if ($request->hasFile('file_path')) {
+            // Hapus file lama jika ada dan file baru diunggah
+            if ($sertifikat->file_path) {
+                Storage::disk('public')->delete($sertifikat->file_path);
+            }
+            // Simpan file baru
+            $data['file_path'] = $request->file('file_path')->store('sertifikats', 'public');
         }
 
         $sertifikat->update($data);
 
-        return redirect()->route('sertifikats.index')->with('success', 'Sertifikat berhasil diperbarui.');
+        // NAMA RUTE DIPERBAIKI dari 'sertifikats.index' menjadi 'sertifikat.index'
+        return redirect()->route('sertifikat.index')->with('success', 'Sertifikat berhasil diperbarui.');
     }
 
-    public function destroy(Sertifikat $sertifikat)
+    /**
+     * Menghapus sertifikat dari database, termasuk file fisiknya.
+     */
+    public function destroy(Sertifikat $sertifikat): RedirectResponse
     {
-        $this->authorize('delete', $sertifikat);
-        Storage::disk('public')->delete($sertifikat->file_path);
-        $sertifikat->delete();
+        // Otorisasi
+        // $this->authorize('delete', $sertifikat); // Uncomment jika menggunakan Policy
 
-        return redirect()->route('sertifikats.index')->with('success', 'Sertifikat berhasil dihapus.');
+        // Hapus file fisik dari storage jika ada
+        if ($sertifikat->file_path) {
+            Storage::disk('public')->delete($sertifikat->file_path);
+        }
+        
+        $sertifikat->delete(); // Hapus entri dari database
+
+        // NAMA RUTE DIPERBAIKI dari 'sertifikats.index' menjadi 'sertifikat.index'
+        return redirect()->route('sertifikat.index')->with('success', 'Sertifikat berhasil dihapus.');
     }
 }

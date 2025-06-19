@@ -399,7 +399,7 @@
             <i class="fas fa-brain"></i> <a href="{{ route('skills.index') }}"><span>{{ $user->skills->count() }} Skills</span></a>
         </div>
         <div>
-            <i class="fas fa-certificate"></i> <a href="{{ route('sertifikats.index') }}"><span>{{ $user->sertifikats->count() }} Certificates</span></a>
+            <i class="fas fa-certificate"></i> <a href="{{ route('sertifikat.index') }}"><span>{{ $user->sertifikats->count() }} Certificates</span></a>
         </div>
     </div>
 </div>
