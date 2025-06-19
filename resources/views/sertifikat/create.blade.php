@@ -265,10 +265,13 @@
 <body>
 
 <header>
- <div class="left">
-  <img src="https://upload.wikimedia.org/wikipedia/sco/thumb/c/cc/Chelsea_FC.svg/2048px-Chelsea_FC.svg.png" alt="Logo">
-  <strong>SkillHub</strong>
- </div>
+ <a href="{{ route('dashboard') }}" style="text-decoration: none; color: inherit;">
+  <div class="left">
+    <img src="https://upload.wikimedia.org/wikipedia/sco/thumb/c/cc/Chelsea_FC.svg/2048px-Chelsea_FC.svg.png" alt="Logo">
+    <strong>SkillHub</strong>
+  </div>
+ </a>
+
  <div class="right">
     <a href="{{ route('profile.profile') }}" class="profile-icon" title="Profil Saya">
     <i class="fas fa-user"></i> </a>
