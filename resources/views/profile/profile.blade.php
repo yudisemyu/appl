@@ -335,7 +335,7 @@
       <i class="fas fa-user"></i>
     </a>
     <div class="dropdown-content">
-      <a href="{{ route('profile.show') }}">Profil</a>
+      <a href="{{ route('profile.profile') }}">Profil</a>
       <form method="POST" action="{{ route('logout') }}">
         @csrf
         <button type="submit" style="background:none;border:none;color:#1d3b98;padding:5px 0;">Logout</button>
@@ -389,7 +389,7 @@
 <div class="profile-banner">
     <img src="https://i.pravatar.cc/90?u=yefyudistira" alt="Foto Profil" class="avatar">
     <div class="user-details">
-        <h1>{{$user->name}}</h1>
+        <h1>{$user->name}</h1>
         <p>{$user->jurusan}<br>{$user->kampus}</p>
     </div>
     <div class="user-stats">

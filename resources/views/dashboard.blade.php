@@ -13,10 +13,6 @@
    overflow-x: hidden;
   }
 
-<<<<<<< HEAD
-=======
-  /* Header */
->>>>>>> 384b0760dd07c88cd4f6a6aa3306fe69aa55cdb9
   header {
    display: flex;
    justify-content: space-between;
@@ -49,7 +45,6 @@
   }
 
   header .right .profile-icon {
-<<<<<<< HEAD
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,59 +55,27 @@
     background-color: #f0f0f0;
     color: #1d3b98;
     font-size: 1.2rem;
-=======
-    display: flex; /* Ensure icon is centered if it were multiple elements */
-    align-items: center;
-    justify-content: center;
-    width: 30px; /* Adjust size as needed */
-    height: 30px; /* Adjust size as needed */
-    border: 1px solid #ddd; /* Lighter border for a softer look */
-    border-radius: 50%; /* Make it round */
-    background-color: #f0f0f0; /* Light background */
-    color: #1d3b98; /* Icon color */
-    font-size: 1.2rem; /* Icon size */
->>>>>>> 384b0760dd07c88cd4f6a6aa3306fe69aa55cdb9
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   }
 
   header .right .profile-icon:hover {
-<<<<<<< HEAD
     background-color: #e0e7f9;
     border-color: #1d3b98;
     color: #16337d;
   }
 
-=======
-    background-color: #e0e7f9; /* Lighter blue on hover */
-    border-color: #1d3b98; /* Border matches brand color on hover */
-    color: #16337d; /* Darker icon color on hover */
-  }
-  /* Dashboard Container */
->>>>>>> 384b0760dd07c88cd4f6a6aa3306fe69aa55cdb9
   .dashboard {
    display: flex;
    max-width: 1300px;
    margin: auto;
    padding: 50px 20px;
    flex-wrap: wrap;
-<<<<<<< HEAD
    justify-content: space-around;
    gap: 30px;
   }
 
   .card {
    background: white;
-=======
-   align-items: center;
-   justify-content: space-around;
-   gap: 30px;
-   position: relative;
-  }
-
-  /* Card Styling */
-  .card {
-   background: white; /* Fallback background color */
->>>>>>> 384b0760dd07c88cd4f6a6aa3306fe69aa55cdb9
    border-radius: 16px;
    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
    padding: 30px;
@@ -125,7 +88,6 @@
    color: inherit;
    display: flex;
    flex-direction: column;
-<<<<<<< HEAD
    justify-content: flex-end;
    align-items: center;
    min-height: 450px;
@@ -133,22 +95,12 @@
    background-position: center;
    position: relative;
    overflow: hidden;
-=======
-   justify-content: flex-end; /* Align content to the bottom for gradient effect */
-   align-items: center;
-   min-height: 450px; /* Increased height as requested */
-   background-size: cover; /* Cover the entire card with the image */
-   background-position: center; /* Center the background image */
-   position: relative; /* Needed for pseudo-elements/overlay */
-   overflow: hidden; /* Hide overflowing parts of the image/gradient */
->>>>>>> 384b0760dd07c88cd4f6a6aa3306fe69aa55cdb9
   }
 
   .card:hover {
    transform: translateY(-5px);
   }
 
-<<<<<<< HEAD
   .card::before {
     content: '';
     position: absolute;
@@ -176,55 +128,17 @@
    font-size: 1.8rem;
    margin-bottom: 5px;
    color: #1d3b98;
-=======
-    /* Overlay for gradient and text */
-    .card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to top, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.0) 70%); /* White gradient from bottom, fading out */
-        z-index: 1; /* Place above image, below text */
-    }
-
-    .card .content-wrapper {
-        position: relative; /* Bring content above the ::before pseudo-element */
-        z-index: 2; /* Ensure content is on top */
-        padding-top: 50px; /* Add padding from top to push content into gradient area */
-        width: 100%; /* Ensure wrapper takes full width */
-        display: flex; /* Flex for content within wrapper */
-        flex-direction: column;
-        justify-content: flex-end; /* Push content to bottom of wrapper */
-        align-items: center;
-        height: 100%; /* Make content wrapper take full height of card */
-    }
-
-
-  .card h2 {
-   font-size: 1.8rem;
-   margin-bottom: 5px; /* Reduced margin for closer text */
-   color: #1d3b98; /* Darker color for readability */
-   border-bottom: none;
-   padding-bottom: 0;
->>>>>>> 384b0760dd07c88cd4f6a6aa3306fe69aa55cdb9
   }
 
   .card p {
     font-size: 1rem;
-<<<<<<< HEAD
     color: #555;
-=======
-    color: #555; /* Slightly darker grey for readability on white */
->>>>>>> 384b0760dd07c88cd4f6a6aa3306fe69aa55cdb9
     margin-top: 0;
     margin-bottom: 0;
   }
 
   .card .icon {
     font-size: 3.5rem;
-<<<<<<< HEAD
     color: #1d3b98;
     margin-bottom: 10px;
   }
@@ -233,44 +147,6 @@
   .card-cv { background-image: url('/images/image2.jpg'); }
   .card-certificates { background-image: url('/images/image3.jpg'); }
 
-=======
-    color: #1d3b98; /* Darker color for readability */
-    margin-bottom: 10px; /* Reduced margin */
-  }
-
-    /* Specific background images for each card */
-    .card-skills {
-        background-image: url('./image1.jpg');
-    }
-
-    .card-cv {
-        background-image: url('./image2.jpg');
-    }
-
-    .card-certificates {
-        background-image: url('./image3.jpg');
-    }
-
-  .btn {
-   display: inline-block;
-   padding: 12px 25px;
-   margin-top: 20px;
-   background: #1d3b98;
-   color: white;
-   border-radius: 30px;
-   text-decoration: none;
-   font-size: 1rem;
-   font-weight: 500;
-   transition: background 0.3s ease, transform 0.2s ease;
-  }
-
-  .btn:hover {
-   background: #16337d;
-   transform: translateY(-2px);
-  }
-
-  /* Stats Section */
->>>>>>> 384b0760dd07c88cd4f6a6aa3306fe69aa55cdb9
   .stats {
    background: #f9f9f9;
    padding: 40px 20px;
@@ -313,13 +189,12 @@
 <body>
 
 <header>
-<<<<<<< HEAD
   <div class="left">
     <img src="https://upload.wikimedia.org/wikipedia/sco/thumb/c/cc/Chelsea_FC.svg/2048px-Chelsea_FC.svg.png" alt="Logo">
     <strong>SkillHub</strong>
   </div>
   <div class="right">
-    <a href="{{ route('profile.show') }}" class="profile-icon" title="Profil Saya">
+    <a href="{{ route('profile.profile') }}" class="profile-icon" title="Profil Saya">
       <i class="fas fa-user"></i>
     </a>
   </div>
@@ -334,7 +209,7 @@
     </div>
   </a>
 
-  <a href="{{ route('profile.show') }}" class="card card-cv">
+  <a href="{{ route('profile.profile') }}" class="card card-cv">
     <div class="content-wrapper">
       <div class="icon"><i class="fas fa-user-circle"></i></div>
       <h2>CV Saya</h2>
@@ -347,46 +222,11 @@
       <div class="icon"><i class="fas fa-certificate"></i></div>
       <h2>Sertifikat Saya</h2>
       <p>Lihat dan unggah sertifikat yang Anda miliki.</p>
-=======
- <div class="left">
-  <img src="https://upload.wikimedia.org/wikipedia/sco/thumb/c/cc/Chelsea_FC.svg/2048px-Chelsea_FC.svg.png" alt="Logo">
-  <strong>SkillHub</strong>
- </div>
- <div class="right">
-    <a href="profile.html" class="profile-icon" title="Profil Saya">
-    <i class="fas fa-user"></i>  </a>
- </div>
-</header>
-
-<div class="dashboard">
- <a href="skills.html" class="card card-skills">
-    <div class="content-wrapper">
-        <div class="icon"><i class="fas fa-brain"></i></div>
-        <h2>Skill Saya</h2>
-        <p>Kelola daftar hard skill dan soft skill Anda.</p>
-    </div>
- </a>
-
- <a href="profile.html" class="card card-cv">
-    <div class="content-wrapper">
-        <div class="icon"><i class="fas fa-user-circle"></i></div>
-        <h2>CV Saya</h2>
-        <p>Lihat dan Kelola CV anda.</p>
-    </div>
- </a>
-
- <a href="certificates.html" class="card card-certificates">
-    <div class="content-wrapper">
-        <div class="icon"><i class="fas fa-certificate"></i></div>
-        <h2>Sertifikat Saya</h2>
-        <p>Lihat dan unggah sertifikat yang Anda miliki.</p>
->>>>>>> 384b0760dd07c88cd4f6a6aa3306fe69aa55cdb9
     </div>
   </a>
 </div>
 
 <div class="stats">
-<<<<<<< HEAD
   <div>
     <h2>1K++</h2>
     <p>Mahasiswa aktif</p>
@@ -411,29 +251,3 @@
 
 </body>
 </html>
-=======
- <div>
-  <h2>1K++</h2>
-  <p>Mahasiswa aktif</p>
- </div>
- <div>
-  <h2>900++</h2>
-  <p>Sertifikat diunggah</p>
- </div>
- <div>
-  <h2>500++</h2>
-  <p>Skill dicatat</p>
- </div>
- <div>
-  <h2>13</h2>
-  <p>Universitas asal Pengguna</p>
-  </div>
- <div>
-  <h2>96%</h2>
-  <p>Pengguna merasa terbantu</p>
- </div>
-</div>
-
-</body>
-</html>
->>>>>>> 384b0760dd07c88cd4f6a6aa3306fe69aa55cdb9

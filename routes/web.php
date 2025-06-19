@@ -20,22 +20,16 @@ Route::get('/sertifikat', [SertifikatController::class, 'index'])->name('sertifi
 
 
 Route::middleware('auth')->group(function () {
+    Route::get('/profile/view', [ProfileController::class, 'profile'])->name('profile.profile');
+    Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/profile', function () {
-    return view('profile', ['user' => Auth::user()]);
-})->middleware('auth')->name('profile');
-
-
-Route::get('/profile', [ProfileController::class, 'profile'])->name('profile.show');
-
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', fn() => view('dashboard'))->name('dashboard');
     Route::resource('skills', SkillController::class);
     Route::resource('sertifikats', SertifikatController::class);
 });
