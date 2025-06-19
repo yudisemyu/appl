@@ -13,7 +13,7 @@
    overflow-x: hidden;
   }
 
-  /* Header - Sesuai permintaan */
+  /* Header - Diperbarui untuk Dropdown */
   header {
    display: flex;
    justify-content: space-between;
@@ -35,7 +35,7 @@
   header .right {
    display: flex;
    align-items: center;
-   gap: 20px;
+   gap: 20px; /* Jarak antar elemen di kanan header, bisa disesuaikan jika hanya ada dropdown */
    font-size: 14px;
   }
 
@@ -45,25 +45,67 @@
    font-weight: 500;
   }
 
-  header .right .profile-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border: 1px solid #ddd;
-    border-radius: 50%;
-    background-color: #f0f0f0;
-    color: #1d3b98;
-    font-size: 1.2rem;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-  }
+    /* Dropdown Styles */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
 
-  header .right .profile-icon:hover {
-    background-color: #e0e7f9;
-    border-color: #1d3b98;
-    color: #16337d;
-  }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: #ffffff;
+        min-width: 140px;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+        padding: 10px 0; /* Padding vertikal */
+        z-index: 1000; /* Pastikan di atas elemen lain */
+        border-radius: 8px;
+        top: calc(100% + 5px); /* Letakkan sedikit di bawah ikon profil */
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-content a, .dropdown-content button {
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        text-align: left;
+        color: #1d3b98;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px 15px; /* Padding untuk item dropdown */
+        font-size: 14px;
+        transition: background-color 0.2s ease;
+    }
+
+    .dropdown-content a:hover, .dropdown-content button:hover {
+        background-color: #f0f0f0;
+    }
+
+    /* Profile Icon Style (dalam dropdown) */
+    .profile-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      background-color: #f0f0f0;
+      color: #1d3b98;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    header .right .profile-icon:hover {
+      background-color: #e0e7f9;
+      border-color: #1d3b98;
+      color: #16337d;
+    }
 
     /* Top Profile Banner */
     .profile-banner {
@@ -141,16 +183,16 @@
         margin-bottom: 5px;
     }
 
-    .profile-banner .user-stats a { /* Styling for the new links */
-        color: white; /* Make link text white */
-        text-decoration: none; /* Remove underline */
+    .profile-banner .user-stats a {
+        color: white;
+        text-decoration: none;
         font-size: 1.1rem;
         font-weight: 500;
         transition: opacity 0.3s ease;
     }
 
     .profile-banner .user-stats a:hover {
-        opacity: 0.7; /* Dim on hover */
+        opacity: 0.7;
     }
 
 
@@ -217,7 +259,7 @@
     }
 
 
-  /* Tombol umum - Sesuai permintaan */
+  /* Tombol umum */
   .btn {
    display: inline-block;
    padding: 12px 25px;
@@ -238,7 +280,7 @@
    transform: translateY(-2px);
   }
 
-  /* Footer - Sesuai permintaan */
+  /* Footer */
   .stats {
    background: #f9f9f9;
    padding: 40px 20px;
@@ -335,86 +377,48 @@
       <i class="fas fa-user"></i>
     </a>
     <div class="dropdown-content">
-      <a href="{{ route('profile.profile') }}">Profil</a>
+      <a href="{{ route('profile.edit') }}">Profil Saya</a> {{-- Mengarahkan ke halaman edit profil --}}
       <form method="POST" action="{{ route('logout') }}">
         @csrf
-        <button type="submit" style="background:none;border:none;color:#1d3b98;padding:5px 0;">Logout</button>
+        <button type="submit">Logout</button>
       </form>
     </div>
   </div>
 </div>
 
-<style>
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: #ffffff;
-    min-width: 140px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
-    padding: 10px;
-    z-index: 1;
-    border-radius: 8px;
-  }
-
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-
-  .dropdown-content a, .dropdown-content button {
-    text-decoration: none;
-    display: block;
-    width: 100%;
-    text-align: left;
-    color: #1d3b98;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 6px 12px;
-    font-size: 14px;
-  }
-
-  .dropdown-content a:hover, .dropdown-content button:hover {
-    background-color: #f0f0f0;
-  }
-</style>
-
 </header>
 
 <div class="profile-banner">
-    <img src="https://i.pravatar.cc/90?u=yefyudistira" alt="Foto Profil" class="avatar">
+    <img src="https://i.pravatar.cc/90?u={{ $user->email }}" alt="Foto Profil" class="avatar">
     <div class="user-details">
-        <h1>{$user->name}</h1>
-        <p>{$user->jurusan}<br>{$user->kampus}</p>
+        <h1>{{ $user->name }}</h1>
+        <p>{{ $user->jurusan ?? 'Jurusan belum diisi' }}<br>{{ $user->kampus ?? 'Kampus belum diisi' }}</p>
     </div>
     <div class="user-stats">
         <div>
-            <i class="fas fa-brain"></i> <a href="skills.html"><span>5 Skills</span></a> </div>
+            <i class="fas fa-brain"></i> <a href="{{ route('skills.index') }}"><span>{{ $user->skills->count() }} Skills</span></a>
+        </div>
         <div>
-            <i class="fas fa-certificate"></i> <a href="certificates.html"><span>8 Certificates</span></a> </div>
+            <i class="fas fa-certificate"></i> <a href="{{ route('sertifikats.index') }}"><span>{{ $user->sertifikats->count() }} Certificates</span></a>
+        </div>
     </div>
 </div>
 
 <div class="profile-content">
     <h2>Informasi Dasar</h2>
     <div class="data-group">
-        <div class="data-item">
-            <label>Nama Depan</label>
-            <p>Yefta Yudistira</p>
+        <div class="data-item full-width">
+            <label>Nama Lengkap</label>
+            <p>{{ $user->name }}</p>
         </div>
         
         <div class="data-item">
             <label>Jurusan</label>
-            <p>Teknik Informatika</p>
+            <p>{{ $user->jurusan ?? 'Belum diisi' }}</p>
         </div>
         <div class="data-item">
             <label>Kampus</label>
-            <p>Universitas Teknologi</p>
+            <p>{{ $user->kampus ?? 'Belum diisi' }}</p>
         </div>
     </div>
 
@@ -422,11 +426,11 @@
     <div class="data-group">
         <div class="data-item full-width">
             <label>Email</label>
-            <p>yeftayudistira@email.com</p>
+            <p>{{ $user->email }}</p>
         </div>
         <div class="data-item full-width">
             <label>Nomor HP</label>
-            <p>+62 812-3456-7890</p>
+            <p>{{ $user->no_hp ?? 'Belum diisi' }}</p>
         </div>
     </div>
 
@@ -434,12 +438,12 @@
     <div class="data-group">
         <div class="data-item full-width">
             <label>Deskripsi Diri</label>
-            <p class="bio-text">Bersemangat dalam pengembangan web dan ilmu data. Selalu ingin belajar teknologi baru dan mencari solusi inovatif untuk masalah kompleks. Aktif dalam organisasi mahasiswa dan proyek tim.</p>
+            <p class="bio-text">{{ $user->biography ?? 'Belum ada biografi' }}</p>
         </div>
     </div>
 
     <div class="profile-actions">
-        <a href="edit-profile.html" class="btn">Edit Profil</a>
+        <a href="{{ route('profile.edit') }}" class="btn">Edit Profil</a>
     </div>
 </div>
 
