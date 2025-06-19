@@ -20,9 +20,9 @@ Route::get('/sertifikat', [SertifikatController::class, 'index'])->name('sertifi
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile/view', [ProfileController::class, 'show'])->name('profile.profile');
+    Route::get('/profile/view', [ProfileController::class, 'profile'])->name('profile.profile');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name(name: 'profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
