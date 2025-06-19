@@ -14,7 +14,7 @@ class SertifikatController extends Controller
     public function index()
     {
         $sertifikats = Auth::user()->sertifikats;
-        return view('dashboard.sertifikats.index', compact('sertifikats'));
+        return view('sertifikat.index', compact('sertifikats'));
     }
 
     public function create()

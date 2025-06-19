@@ -14,7 +14,7 @@ class SkillController extends Controller
     public function index()
     {
         $skills = Auth::user()->skills;
-        return view('dashboard.skills.index', compact('skills'));
+        return view('skills.index', compact('skills'));
     }
 
     // Tampilkan form tambah skill

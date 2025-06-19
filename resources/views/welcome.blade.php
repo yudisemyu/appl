@@ -207,7 +207,7 @@
         <strong>SkillHub</strong>
     </div>
     <div class="right">
-        <a href="#" class="login">Login</a>
+        <a href="{{ route('login') }}" class="login">Login</a>
     </div>
 </header>
 
@@ -221,7 +221,7 @@
             SkillHub membantu mahasiswa mencatat skill (hard/soft), mengunggah sertifikat, dan membuat profil semi-LinkedIn untuk masa depan kariermu.
         </p>
         <div class="buttons">
-            <a href="#" class="start">Start Make It</a>
+            <a href="{{route('register')}}" class="register">Start Make It</a>
         </div>
     </div>
 
