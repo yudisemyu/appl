@@ -20,7 +20,7 @@ class SkillController extends Controller
     // Tampilkan form tambah skill
     public function create()
     {
-        return view('dashboard.skills.create');
+        return view('skills.create');
     }
 
     // Simpan skill baru
@@ -41,7 +41,7 @@ class SkillController extends Controller
     public function edit(Skill $skill)
     {
         $this->authorize('update', $skill);
-        return view('dashboard.skills.edit', compact('skill'));
+        return view('skills.edit', compact('skill'));
     }
 
     // Update data skill
