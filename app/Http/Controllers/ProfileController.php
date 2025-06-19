@@ -15,7 +15,7 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
 
-    public function show()
+    public function profile()
     {
         $user = Auth::user();
         return view('profile', compact('user'));
@@ -29,7 +29,7 @@ class ProfileController extends Controller
     }
 
 
-    public function profile()
+    public function show()
     {
         return view('profile.profile'); // atau 'user.profile' sesuai view yang kamu buat
     }

@@ -257,7 +257,7 @@
   <strong>SkillHub</strong>
  </div>
  <div class="right">
-    <a href="{{ route('profile.show') }}" class="profile-icon" title="Profil Saya">
+    <a href="{{ route('profile.profile') }}" class="profile-icon" title="Profil Saya">
     <i class="fas fa-user"></i> </a>
  </div>
 </header>
