@@ -23,8 +23,10 @@ class ProfileUpdateRequest extends FormRequest
                 'lowercase',
                 'email',
                 'max:255',
-                Rule::unique(User::class)->ignore($this->user()->id),
-            ],
+                Rule::unique(User::class)->ignore($this->user()->id)],
+            'jurusan' => ['required', 'string', 'max:255'], // Tambahkan ini
+            'kampus' => ['required', 'string', 'max:255'],
+            'no_hp' => ['required', 'string', 'max:15'],
         ];
     }
 }
