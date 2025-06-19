@@ -335,7 +335,7 @@
       <i class="fas fa-user"></i>
     </a>
     <div class="dropdown-content">
-      <a href="{{ route('profile.profile') }}">Profil</a>
+      <a href="{{ route('profile.profile')}}">Profil</a>
       <form method="POST" action="{{ route('logout') }}">
         @csrf
         <button type="submit" style="background:none;border:none;color:#1d3b98;padding:5px 0;">Logout</button>
@@ -389,8 +389,8 @@
 <div class="profile-banner">
     <img src="https://i.pravatar.cc/90?u=yefyudistira" alt="Foto Profil" class="avatar">
     <div class="user-details">
-        <h1>{$user->name}</h1>
-        <p>{$user->jurusan}<br>{$user->kampus}</p>
+        <h1>{{ $user->name }}</h1>
+        <p>{{$user->jurusan}}<br>{{$user->kampus}}</p>
     </div>
     <div class="user-stats">
         <div>
@@ -404,17 +404,17 @@
     <h2>Informasi Dasar</h2>
     <div class="data-group">
         <div class="data-item">
-            <label>Nama Depan</label>
-            <p>Yefta Yudistira</p>
+            <label>Nama Lengkap</label>
+            <p>{{$user->name}}</p>
         </div>
         
         <div class="data-item">
             <label>Jurusan</label>
-            <p>Teknik Informatika</p>
+            <p>{{$user->jurusan}}</p>
         </div>
         <div class="data-item">
             <label>Kampus</label>
-            <p>Universitas Teknologi</p>
+            <p>{{$user->kampus}}</p>
         </div>
     </div>
 
@@ -422,11 +422,11 @@
     <div class="data-group">
         <div class="data-item full-width">
             <label>Email</label>
-            <p>yeftayudistira@email.com</p>
+            <p>{{$user->email}}</p>
         </div>
         <div class="data-item full-width">
             <label>Nomor HP</label>
-            <p>+62 812-3456-7890</p>
+            <p>{{$user->no_hp}}</p>
         </div>
     </div>
 
@@ -439,7 +439,7 @@
     </div>
 
     <div class="profile-actions">
-        <a href="edit-profile.html" class="btn">Edit Profil</a>
+        <a href="{{route ("profile.edit")}}" class="btn">Edit Profil</a>
     </div>
 </div>
 

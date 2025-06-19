@@ -15,11 +15,11 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
 
-    public function profile()
-    {
-        $user = Auth::user();
-        return view('profile', compact('user'));
-    }
+    // public function profile(): View
+    // {
+    //     $user = Auth::user();
+    //     return view('profile.profile', compact('user'));
+    // }
 
     public function edit(Request $request): View
     {
@@ -29,9 +29,10 @@ class ProfileController extends Controller
     }
 
 
-    public function show()
+    public function show(): View
     {
-        return view('profile.profile'); // atau 'user.profile' sesuai view yang kamu buat
+        $user = Auth::user();
+        return view('profile.profile', compact('user'));// atau 'user.profile' sesuai view yang kamu buat
     }
     /**
      * Update the user's profile information.
