@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LlamaController;
 use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ProfileController;
@@ -32,8 +33,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::resource('skills', SkillController::class);
     Route::resource('sertifikat', SertifikatController::class);
+    Route::post('/ask-llama', [LlamaController::class, 'ask'])->name('llama.ask');
+    Route::post('/ask-llama-web', [LlamaController::class, 'askWeb'])->name('llama.ask.web');
     Route::post('/cv/download', [CvController::class, 'download'])->name('cv.download');
 });
-
 
 require __DIR__.'/auth.php';

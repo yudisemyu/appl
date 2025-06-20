@@ -411,16 +411,16 @@
     <h2>Informasi Dasar</h2>
     <div class="data-group">
         <div class="data-item">
-            <label>Nama Lengkap</label>
+            <b>Nama Lengkap</b>
             <p>{{$user->name}}</p>
         </div>
         
         <div class="data-item">
-            <label>Jurusan</label>
+            <b>Jurusan</b>
             <p>{{$user->jurusan}}</p>
         </div>
         <div class="data-item">
-            <label>Kampus</label>
+            <b>Kampus</b>
             <p>{{$user->kampus}}</p>
         </div>
     </div>
@@ -428,11 +428,11 @@
     <h2>Informasi Kontak</h2>
     <div class="data-group">
         <div class="data-item full-width">
-            <label>Email</label>
+            <b>Email</b>
             <p>{{$user->email}}</p>
         </div>
         <div class="data-item full-width">
-            <label>Nomor HP</label>
+            <b>Nomor HP</b>
             <p>{{$user->no_hp}}</p>
         </div>
     </div>
@@ -440,10 +440,22 @@
     <h2>Biografi</h2>
     <div class="data-group">
         <div class="data-item full-width">
-            <label>Deskripsi Diri</label>
-            <p class="bio-text">{{ $user->biography ?? 'Belum ada biografi' }}</p>
+            <b>Deskripsi Diri</b>
+            <p class="bio-text">{{ $user->biografi ?? 'Belum ada biografi' }}</p>
         </div>
     </div>
+
+    <h2>Pendidikan</h2>
+    <div class="data-group">
+        <div class="data-item full-width">
+            <b>Pendidikan Terakhir</b>
+
+            <p class="bio-text">
+            {{ $user->pendidikan_terakhir ?? 'Belum ada Data Pendidikan Terakhir' }} - {{ $user->tahun_pendidikan_terakhir ?? 'Tahun Tidak Tersedia' }}
+            </p>
+        </div>
+    </div>
+
 
     <div class="profile-actions">
         <a href="{{ route('profile.edit') }}" class="btn">Edit Profil</a>
