@@ -192,7 +192,7 @@
       right: 20px;
       width: 60px;
       height: 60px;
-      background: linear-gradient(135deg, #1da1f2, #0066cc);
+      background: #1d3b98;
       color: white;
       border: none;
       border-radius: 50%;
@@ -218,14 +218,14 @@
       border-radius: 10px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
       overflow: hidden;
-      border: 2px solid #1da1f2;
+      border: 2px solid #1d3b98;
     }
     .chatbot-panel.active {
       display: flex;
       flex-direction: column;
     }
     .chatbot-header {
-      background: linear-gradient(135deg, #1da1f2, #0066cc);
+      background: #1d3b98;
       color: white;
       padding: 10px;
       text-align: center;
@@ -266,7 +266,7 @@
         }
         .send-btn {
             padding: 8px 15px;
-            background: #1da1f2;
+            background: #1d3b98;
             color: white;
             border: none;
             border-radius: 5px;
