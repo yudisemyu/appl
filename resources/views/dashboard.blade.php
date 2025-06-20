@@ -209,7 +209,7 @@
     </div>
   </a>
 
-  <a href="{{ route('profile.profile') }}" class="card card-cv">
+  <a href="{{ route('cv.show') }}" class="card card-cv">
     <div class="content-wrapper">
       <div class="icon"><i class="fas fa-user-circle"></i></div>
       <h2>CV Saya</h2>

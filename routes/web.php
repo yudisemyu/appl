@@ -4,6 +4,7 @@ use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CvController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -16,7 +17,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/skills', [SkillController::class, 'index'])->name('skills.index');
 Route::get('/sertifikat', [SertifikatController::class, 'index'])->name('sertifikat.index');
-
+Route::get('/cv', [CvController::class, 'index'])->name('cv.show')->middleware('auth');
 
 
 Route::middleware('auth')->group(function () {
