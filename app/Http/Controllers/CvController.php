@@ -19,7 +19,19 @@ class CvController extends Controller
 
     public function download()
     {
-        $pdf = Pdf::loadView('cv.show'); // Ambil view yang sama, render jadi PDF
-        return $pdf->download('CV-' . Auth::user()->name . '.pdf');
+        $user = Auth::user();
+        $user->load('skills', 'sertifikats');
+
+        // PERBAIKAN DI SINI: Kirimkan variabel 'is_pdf' dengan nilai TRUE
+        // Buat array data gabungan untuk dikirim ke view
+        $data = [
+            'user' => $user,
+            'is_pdf' => true, // Ini adalah flag yang akan kita gunakan di Blade
+        ];
+
+        // Memuat view 'profile.cv' dan mengirimkan data
+        $pdf = Pdf::loadView('cv.show', $data); 
+
+        return $pdf->download('CV-' . $user->name . '.pdf');
     }
 }
