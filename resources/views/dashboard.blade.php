@@ -213,7 +213,7 @@
     <div class="content-wrapper">
       <div class="icon"><i class="fas fa-user-circle"></i></div>
       <h2>CV Saya</h2>
-      <p>Lihat dan Kelola CV anda.</p>
+      <p>Buat dan Kelola CV anda.</p>
     </div>
   </a>
 
