@@ -19,7 +19,7 @@ class CvController extends Controller
 
     public function download()
     {
-        $pdf = Pdf::loadView('cv.index'); // Ambil view yang sama, render jadi PDF
+        $pdf = Pdf::loadView('cv.show'); // Ambil view yang sama, render jadi PDF
         return $pdf->download('CV-' . Auth::user()->name . '.pdf');
     }
 }

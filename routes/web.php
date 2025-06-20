@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::resource('skills', SkillController::class);
     Route::resource('sertifikat', SertifikatController::class);
+    Route::post('/cv/download', [CvController::class, 'download'])->name('cv.download');
 });
 
 
