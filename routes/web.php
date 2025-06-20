@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CvController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ExperienceController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/ask-llama', [LlamaController::class, 'ask'])->name('llama.ask');
     Route::post('/ask-llama-web', [LlamaController::class, 'askWeb'])->name('llama.ask.web');
     Route::post('/cv/download', [CvController::class, 'download'])->name('cv.download');
+    Route::resource('experiences', ExperienceController::class);
 });
 
 require __DIR__.'/auth.php';

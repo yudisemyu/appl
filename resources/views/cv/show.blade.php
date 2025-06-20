@@ -471,7 +471,7 @@
 
     <div class="page-header">
         <div class="left-actions">
-            <a href="{{ route('profile.profile') }}" class="back-button" title="Kembali ke Profil"><i class="fas fa-arrow-left"></i></a>
+            <a href="{{ route('dashboard') }}" class="back-button" title="Kembali ke Dashboard"><i class="fas fa-arrow-left"></i></a>
             <h1>Curriculum Vitae</h1>
         </div>
     </div>
@@ -523,39 +523,21 @@
     {{-- Pengalaman (Data masih dummy karena tidak ada kolom di tabel users untuk array pengalaman) --}}
     <div class="cv-section">
         <h2>Pengalaman</h2>
-        <div class="item-block">
-            <h3>Digital Marketing Strategist</h3>
-            <p>Agensi Pemasaran Borcelle | 2023 - Sekarang</p>
-            <p>
-                <ul>
-                    <li>Merancang dan mengelola strategi digital untuk berbagai klien, termasuk SEO, SEM, manajemen media sosial, dan kampanye email marketing.</li>
-                    <li>Mengoptimalkan iklan berbayar yang meningkatkan ROI hingga 30% dalam 6 bulan.</li>
-                    <li>Menganalisis data pelanggan dan pasar untuk mengidentifikasi peluang dan membuat strategi pemasaran yang lebih tepat sasaran.</li>
-                    <li>Bekerja sama dengan tim kreatif untuk merancang materi pemasaran yang efektif dan inovatif.</li>
-                </ul>
-            </p>
-        </div>
-        <div class="item-block">
-            <h3>Social Media Manager</h3>
-            <p>Larana Inc | 2021 - 2023</p>
-            <p>
-                <ul>
-                    <li>Mengelola kampanye media sosial di berbagai platform untuk membangun brand awareness.</li>
-                    <li>Berhasil meningkatkan followers sebesar 50% dan engagement sebesar 40% dalam waktu 1 tahun.</li>
-                    <li>Menganalisis performa konten menggunakan data analitik untuk meningkatkan efektivitas strategi.</li>
-                </ul>
-            </p>
-        </div>
-        {{-- Jika Anda memiliki relasi 'experiences' yang berisi banyak riwayat pengalaman, Anda bisa melakukan loop di sini --}}
-        {{-- @forelse($user->experiences as $exp)
+        @forelse($user->experiences as $experience)
             <div class="item-block">
-                <h3>{{ $exp->posisi }}</h3>
-                <p>{{ $exp->perusahaan }} | {{ $exp->tahun_mulai }} - {{ $exp->tahun_selesai }}</p>
-                <p>{{ $exp->deskripsi }}</p>
+                <h3>{{ $experience->job_title }}</h3>
+                <p>{{ $experience->company }} @if($experience->location), {{ $experience->location }} @endif</p>
+                <p class="date-range">
+                    {{ \Carbon\Carbon::parse($experience->start_date)->format('M Y') }} - 
+                    {{ $experience->end_date ? \Carbon\Carbon::parse($experience->end_date)->format('M Y') : 'Sekarang' }}
+                </p>
+                @if($experience->description)
+                    <p>{{ $experience->description }}</p> 
+                @endif
             </div>
         @empty
-            <li>Tidak ada pengalaman yang dicatat.</li>
-        @endforelse --}}
+            <p>Belum ada pengalaman yang dicatat.</p>
+        @endforelse
     </div>
 
     {{-- Skills --}}

@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -43,6 +44,11 @@ class User extends Authenticatable
     public function skills()
     {
         return $this->hasMany(Skill::class);
+    }
+
+    public function experiences(): HasMany
+    {
+        return $this->hasMany(Experience::class);
     }
 
     // 🔗 Relasi: 1 user punya banyak sertifikat
