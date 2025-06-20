@@ -258,8 +258,7 @@
 
 <header>
  <div class="left">
-  <img src="https://upload.wikimedia.org/wikipedia/sco/thumb/c/cc/Chelsea_FC.svg/2048px-Chelsea_FC.svg.png" alt="Logo">
-  <strong>SkillHub</strong>
+    <img src="\images\image4.png" alt="Logo">
  </div>
  <div class="right">
     <a href="{{ route('profile.profile') }}" class="profile-icon" title="Profil Saya">

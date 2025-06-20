@@ -98,6 +98,7 @@
    overflow: hidden;
   }
 
+
   .card:hover {
    transform: translateY(-5px);
   }
@@ -147,6 +148,7 @@
   .card-skills { background-image: url('/images/image1.jpg'); }
   .card-cv { background-image: url('/images/image2.jpg'); }
   .card-certificates { background-image: url('/images/image3.jpg'); }
+  .card-experiences { background-image: url('/images/image8.jpg'); }
 
   .stats {
    background: #f9f9f9;
@@ -613,8 +615,8 @@
 
 <header>
   <div class="left">
-    <img src="https://upload.wikimedia.org/wikipedia/sco/thumb/c/cc/Chelsea_FC.svg/2048px-Chelsea_FC.svg.png" alt="Logo">
-    <strong>SkillHub</strong>
+     <a href="{{ route('dashboard') }}" style="text-decoration: none; color: inherit;"></a>
+    <img src="\images\image4.png" alt="Logo">
   </div>
   <div class="right">
     <a href="{{ route('profile.profile') }}" class="profile-icon" title="Profil Saya">
@@ -645,6 +647,14 @@
       <div class="icon"><i class="fas fa-certificate"></i></div>
       <h2>Sertifikat Saya</h2>
       <p>Lihat dan unggah sertifikat yang Anda miliki.</p>
+    </div>
+  </a>
+
+  <a href="{{ route('experiences.index') }}" class="card card-experiences">
+    <div class="content-wrapper">
+      <div class="icon"><i class="fas fa-briefcase"></i></div>
+      <h2>Pengalaman Saya</h2>
+      <p>Kelola daftar pengalaman anda</p>
     </div>
   </a>
 </div>

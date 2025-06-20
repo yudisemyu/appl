@@ -20,6 +20,7 @@ Route::get('/dashboard', function () {
 Route::get('/skills', [SkillController::class, 'index'])->name('skills.index');
 Route::get('/sertifikat', [SertifikatController::class, 'index'])->name('sertifikat.index');
 Route::get('/cv', [CvController::class, 'index'])->name('cv.show')->middleware('auth');
+Route::get('/experiences/index', [ExperienceController::class, 'index'])->name('experiences.index')->middleware('auth');
 
 
 Route::middleware('auth')->group(function () {

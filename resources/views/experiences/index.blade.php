@@ -279,8 +279,7 @@
 <header>
  <a href="{{ route('dashboard') }}" style="text-decoration: none; color: inherit;">
   <div class="left">
-    <img src="https://upload.wikimedia.org/wikipedia/sco/thumb/c/cc/Chelsea_FC.svg/2048px-Chelsea_FC.svg.png" alt="Logo">
-    <strong>SkillHub</strong>
+    <img src="\images\image4.png" alt="Logo">
   </div>
  </a>
 
@@ -354,7 +353,7 @@
   <p>Universitas asal Pengguna</p>
   </div>
  <div>
-  <h2>96%</div>
+  <h2>96%</h2>
   <p>Pengguna merasa terbantu</p>
  </div>
 </div>
