@@ -30,6 +30,7 @@ class ProfileUpdateRequest extends FormRequest
             'biografi' => ['required', 'string', 'max:500'],
             'pendidikan_terakhir' => ['nullable', 'string', 'max:255'],
             'tahun_pendidikan_terakhir' => ['nullable', 'string', 'max:4'],
+            'path_foto' => ['nullable', 'string', 'max:2048'], // Maksimal 2MB
         ];
     }
 }

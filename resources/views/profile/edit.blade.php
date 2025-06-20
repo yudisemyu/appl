@@ -299,13 +299,25 @@
                         <span style="color:red; font-size:0.85rem;">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="form-item full-width"> {{-- Biasanya foto profil diupload terpisah --}}
+                <div class="form-item full-width">
                     <label for="profilePhoto">Foto Profil</label>
+
+                    {{-- Tampilkan foto lama jika ada --}}
+                    @if($user->photo_path)
+                        <div style="margin-bottom: 10px;">
+                            <img src="{{ Storage::url($user->path_foto) }}" alt="Foto Profil Lama" style="width: 120px; height: 120px; object-fit: cover; border-radius: 8px; border: 1px solid #ccc;">
+                        </div>
+                    @endif
+
+                    {{-- Input file untuk unggah baru --}}
                     <input type="file" id="profilePhoto" name="profile_photo" accept="image/*">
+
+                    {{-- Tampilkan error validasi jika ada --}}
                     @error('profile_photo')
                         <span style="color:red; font-size:0.85rem;">{{ $message }}</span>
                     @enderror
                 </div>
+
             </div>
         </div>
 

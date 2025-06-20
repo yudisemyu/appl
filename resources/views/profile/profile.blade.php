@@ -392,7 +392,10 @@
 </header>
 
 <div class="profile-banner">
-    <img src="https://i.pravatar.cc/90?u={{ $user->email }}" alt="Foto Profil" class="avatar">
+    <img src="{{ $user->path_foto ? Storage::url($user->path_foto) : $user->email }}" 
+        alt="Foto Profil" 
+        class="avatar">
+
     <div class="user-details">
         <h1>{{ $user->name }}</h1>
         <p>{{$user->jurusan}}<br>{{$user->kampus}}</p>

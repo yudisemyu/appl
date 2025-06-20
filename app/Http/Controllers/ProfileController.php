@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -39,20 +40,29 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $user = $request->user(); // Dapatkan user yang sedang login
+        $user = $request->user(); // Pengguna yang sedang login
 
-        // Mengisi atribut model dari data yang sudah divalidasi
-        // Pastikan properti ini ada di $fillable array model User Anda
-        $user->fill($request->validated());
+        $user->fill($request->validated()); // Isi data biasa
 
-        // Penanganan email yang berubah
+        // ✅ Penanganan Upload Foto Profil
+        if ($request->hasFile('profile_photo')) {
+            // Hapus foto lama jika ada
+            if ($user->path_foto) {
+                Storage::disk('public')->delete($user->path_foto);
+            }
+
+            // Simpan foto baru ke folder storage/app/public/profile_photos
+            $filePath = $request->file('profile_photo')->store('profile_photos', 'public');
+            $user->path_foto = $filePath; // Simpan path-nya ke database
+        }
+
+        // Reset verifikasi email jika email diubah
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
         }
 
-        $user->save();
+        $user->save(); // Simpan user yang telah diubah
 
-        // Redirect ke halaman tampilan profil setelah update berhasil
         return Redirect::route('profile.profile')->with('status', 'profile-updated');
     }
 
