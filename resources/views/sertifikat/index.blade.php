@@ -318,9 +318,10 @@
     @forelse ($sertifikats as $sertifikat)
         <div class="certificate-item">
             {{-- Bagian Thumbnail Sertifikat --}}
-            <img src="{{ $sertifikat->file_path ? Storage::url($sertifikat->file_path) : 'https://via.placeholder.com/100x70?text=Sertifikat' }}" 
-                 alt="Thumbnail Sertifikat {{ $sertifikat->judul }}" 
-                 class="cert-thumbnail">
+            <img src="{{ $sertifikat->file_path ? Storage::url($sertifikat->file_path) : 'https://via.placeholder.com/100x70?text=Sertifikat' }}"                  
+            class="cert-thumbnail" style="cursor: pointer;"
+            onclick="openPreview('{{ Storage::url($sertifikat->file_path) }}')" title="Klik untuk pratinjau">
+
 
             {{-- Bagian Informasi Sertifikat --}}
             <div class="cert-info">
@@ -332,7 +333,7 @@
             {{-- Bagian Tombol Aksi --}}
             <div class="cert-actions">
                 @if ($sertifikat->file_path)
-                    <a href="{{ Storage::url($sertifikat->file_ambiguity) }}" target="_blank" class="cert-action-button view-file" title="Lihat Sertifikat"><i class="fas fa-eye"></i></a>
+                    <a href="{{ Storage::url($sertifikat->file_path) }}" target="_blank" class="cert-action-button view-file" title="Lihat Sertifikat"><i class="fas fa-eye"></i></a>
                 @endif
                 <a href="{{ route('sertifikat.edit', $sertifikat->id) }}" class="cert-action-button" title="Edit Sertifikat"><i class="fas fa-pencil-alt"></i></a>
                 
@@ -372,6 +373,33 @@
   <p>Pengguna merasa terbantu</p>
  </div>
 </div>
+
+<!-- Modal Preview Sertifikat -->
+<div id="previewModal" style="display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%;
+     background-color: rgba(0,0,0,0.7); justify-content: center; align-items: center;">
+  <div style="position: relative; max-width: 90%; max-height: 90%;">
+    <span onclick="closePreview()" style="position: absolute; top: -20px; right: -20px; font-size: 2rem; color: white; cursor: pointer;">&times;</span>
+    <iframe id="modalFrame" src="" style="width: 100%; height: 80vh; border: none; border-radius: 8px; background: white;"></iframe>
+  </div>
+</div>
+
+<script>
+  function openPreview(url) {
+    const modal = document.getElementById("previewModal");
+    const frame = document.getElementById("modalFrame");
+    frame.src = url;
+    modal.style.display = "flex";
+  }
+
+  function closePreview() {
+    const modal = document.getElementById("previewModal");
+    const frame = document.getElementById("modalFrame");
+    frame.src = "";
+    modal.style.display = "none";
+  }
+</script>
+
+
 
 </body>
 </html>

@@ -20,6 +20,10 @@ return new class extends Migration
             $table->string('jurusan')->nullable();
             $table->string('kampus')->nullable();
             $table->string('no_hp')->nullable();
+            $table->string('biografi')->nullable();
+            $table->string('pendidikan_terakhir')->nullable();
+            $table->string('tahun pendidikan_terakhir')->nullable();
+            $table->string('path_foto')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
