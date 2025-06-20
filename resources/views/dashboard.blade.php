@@ -184,6 +184,97 @@
     margin-bottom: 20px;
    }
   }
+
+  /* Chatbot Styles */
+    .chatbot-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #1da1f2, #0066cc);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 24px;
+      box-shadow: 0 4px 15px rgba(29, 161, 242, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s;
+    }
+    .chatbot-btn:hover {
+      transform: scale(1.1);
+    }
+    .chatbot-panel {
+      display: none;
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 320px;
+      height: 420px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      border: 2px solid #1da1f2;
+    }
+    .chatbot-panel.active {
+      display: flex;
+      flex-direction: column;
+    }
+    .chatbot-header {
+      background: linear-gradient(135deg, #1da1f2, #0066cc);
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .chatbox {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background: #f9f9f9;
+    }
+    .chatbox p {
+      margin: 5px 0;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+    .chatbox .user {
+      background: #e1f5fe;
+      text-align: right;
+    }
+    .chatbox .bot {
+      background: #e3f2fd;
+    }
+    .input-area {
+      padding: 10px;
+      background: #fff;
+      border-top: 1px solid #ddd;
+      display: flex;
+      gap: 5px;
+        }
+        #chatInput {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+        .send-btn {
+            padding: 8px 15px;
+            background: #1da1f2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .send-btn:hover {
+            background: #0066cc;
+        }
  </style>
 </head>
 <body>
@@ -249,5 +340,38 @@
   </div>
 </div>
 
+<!-- Chatbot Integration -->
+    <button class="chatbot-btn" onclick="toggleChatbot()">💬</button>
+    <div class="chatbot-panel" id="chatbotPanel">
+        <div class="chatbot-header">SkillHub Chatbot</div>
+        <div class="chatbox" id="chatbox"></div>
+        <div class="input-area">
+            <input type="text" id="chatInput" placeholder="Tulis pesan...">
+            <button class="send-btn" onclick="sendMessage()">Kirim</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleChatbot() {
+            const panel = document.getElementById('chatbotPanel');
+            panel.classList.toggle('active');
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const chatbox = document.getElementById('chatbox');
+            const message = input.value.trim();
+            if (message) {
+                chatbox.innerHTML += `<p class="user"><strong>Kamu:</strong> ${message}</p>`;
+                chatbox.innerHTML += `<p class="bot"><strong>Bot:</strong> Halo! Saya bisa membantu Anda dengan SkillHub. Apa yang ingin Anda ketahui?</p>`;
+                input.value = '';
+                chatbox.scrollTop = chatbox.scrollHeight;
+            }
+        }
+
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
 </body>
 </html>
