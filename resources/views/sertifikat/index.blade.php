@@ -146,7 +146,21 @@
         object-fit: cover; /* Memastikan gambar mengisi area tanpa distorsi */
         flex-shrink: 0; /* Mencegah thumbnail menyusut */
         border: 1px solid #ddd;
+        /* Tambahkan gaya cursor pointer di sini juga agar konsisten */
+        cursor: pointer;
     }
+    .cert-thumbnail.placeholder-text { /* Gaya khusus untuk thumbnail teks (misal: PDF) */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        color: #000000; /* Warna teks PDF */
+        font-size: 0.85rem;
+        border: 1px solid #000000; /* Border PDF */
+        background-color: #f2f2f2; /* Latar belakang PDF */
+        text-transform: uppercase; /* Contoh: buat teks jadi uppercase */
+    }
+
 
     .cert-info {
         flex-grow: 1; /* Biarkan informasi mengisi sisa ruang */
@@ -317,10 +331,32 @@
 <div class="certificates-container">
     @forelse ($sertifikats as $sertifikat)
         <div class="certificate-item">
-            {{-- Bagian Thumbnail Sertifikat --}}
-            <img src="{{ $sertifikat->file_path ? Storage::url($sertifikat->file_path) : 'https://via.placeholder.com/100x70?text=Sertifikat' }}"                  
-            class="cert-thumbnail" style="cursor: pointer;"
-            onclick="openPreview('{{ Storage::url($sertifikat->file_path) }}')" title="Klik untuk pratinjau">
+            {{-- Bagian Thumbnail Sertifikat - Menggunakan kondisi untuk menampilkan gambar atau teks --}}
+            @php
+                $filePath = $sertifikat->file_path ? Storage::url($sertifikat->file_path) : null;
+                $fileExtension = $filePath ? pathinfo($filePath, PATHINFO_EXTENSION) : '';
+                $isPdf = (strtolower($fileExtension) == 'pdf');
+                $isImage = in_array(strtolower($fileExtension), ['jpg', 'jpeg', 'png', 'gif', 'webp']);
+            @endphp
+
+            @if ($isPdf)
+                <div class="cert-thumbnail placeholder-text" 
+                     onclick="openPreview('{{ $filePath }}')" 
+                     title="Klik untuk pratinjau PDF">
+                    PDF
+                </div>
+            @elseif ($isImage)
+                <img src="{{ $filePath }}" 
+                     alt="Thumbnail Sertifikat {{ $sertifikat->judul }}" 
+                     class="cert-thumbnail" 
+                     onclick="openPreview('{{ $filePath }}')" 
+                     title="Klik untuk pratinjau">
+            @else
+                {{-- Fallback for no file or unsupported type --}}
+                <img src="https://via.placeholder.com/100x70?text=File" 
+                     alt="Tidak ada pratinjau" 
+                     class="cert-thumbnail">
+            @endif
 
 
             {{-- Bagian Informasi Sertifikat --}}
@@ -374,27 +410,51 @@
  </div>
 </div>
 
-<!-- Modal Preview Sertifikat -->
 <div id="previewModal" style="display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%;
      background-color: rgba(0,0,0,0.7); justify-content: center; align-items: center;">
-  <div style="position: relative; max-width: 90%; max-height: 90%;">
+  <div style="position: relative; max-width: 90%; max-height: 90%; display: flex; justify-content: center; align-items: center;">
     <span onclick="closePreview()" style="position: absolute; top: -20px; right: -20px; font-size: 2rem; color: white; cursor: pointer;">&times;</span>
-    <iframe id="modalFrame" src="" style="width: 100%; height: 80vh; border: none; border-radius: 8px; background: white;"></iframe>
+    <iframe id="modalFrame" src="" style="width: 100%; height: 80vh; border: none; border-radius: 8px; background: white; display: none;"></iframe>
+    <img id="modalImage" src="" alt="Sertifikat Pratinjau" style="max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 8px; display: none;">
   </div>
 </div>
 
 <script>
   function openPreview(url) {
     const modal = document.getElementById("previewModal");
-    const frame = document.getElementById("modalFrame");
-    frame.src = url;
+    const modalFrame = document.getElementById("modalFrame");
+    const modalImage = document.getElementById("modalImage");
+
+    // Reset display of both elements
+    modalFrame.style.display = "none";
+    modalImage.style.display = "none";
+
+    // Determine file type
+    const fileExtension = url.split('.').pop().toLowerCase();
+    if (['pdf'].includes(fileExtension)) {
+      // It's a PDF
+      modalFrame.src = url;
+      modalFrame.style.display = "block";
+    } else if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(fileExtension)) {
+      // It's an image
+      modalImage.src = url;
+      modalImage.style.display = "block";
+    } else {
+      // Fallback or unsupported type, open in new tab
+      window.open(url, '_blank');
+      return; // Exit function if opening in new tab
+    }
+
     modal.style.display = "flex";
   }
 
   function closePreview() {
     const modal = document.getElementById("previewModal");
-    const frame = document.getElementById("modalFrame");
-    frame.src = "";
+    const modalFrame = document.getElementById("modalFrame");
+    const modalImage = document.getElementById("modalImage");
+
+    modalFrame.src = ""; // Clear iframe src
+    modalImage.src = ""; // Clear image src
     modal.style.display = "none";
   }
 </script>
