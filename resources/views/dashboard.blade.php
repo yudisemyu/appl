@@ -219,6 +219,7 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       border: 2px solid #1d3b98;
+      z-index: 10;
     }
     .chatbot-panel.active {
       display: flex;
@@ -231,6 +232,7 @@
       text-align: center;
       font-size: 18px;
       font-weight: bold;
+      z-index: 10;
     }
     .chatbox {
       flex: 1;
