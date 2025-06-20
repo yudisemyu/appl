@@ -146,18 +146,17 @@
         object-fit: cover; /* Memastikan gambar mengisi area tanpa distorsi */
         flex-shrink: 0; /* Mencegah thumbnail menyusut */
         border: 1px solid #ddd;
-        /* Tambahkan gaya cursor pointer di sini juga agar konsisten */
-        cursor: pointer;
+        cursor: pointer; /* Menandakan bisa diklik */
     }
     .cert-thumbnail.placeholder-text { /* Gaya khusus untuk thumbnail teks (misal: PDF) */
         display: flex;
         justify-content: center;
         align-items: center;
         font-weight: bold;
-        color: #000000; /* Warna teks PDF */
+        color: #1d3b98; /* Warna teks PDF */
         font-size: 0.85rem;
-        border: 1px solid #000000; /* Border PDF */
-        background-color: #f2f2f2; /* Latar belakang PDF */
+        background-color: #eef3fc; /* Latar belakang PDF */
+        border: 1px solid #1d3b98; /* Border PDF */
         text-transform: uppercase; /* Contoh: buat teks jadi uppercase */
     }
 
@@ -296,7 +295,7 @@
         height: 28px;
         font-size: 1rem;
       }
-        .page-header h1 {
+        .page-header h1 { /* Menggunakan kelas yang sudah diselaraskan */
             font-size: 1.8rem;
         }
     }
@@ -414,8 +413,8 @@
      background-color: rgba(0,0,0,0.7); justify-content: center; align-items: center;">
   <div style="position: relative; max-width: 90%; max-height: 90%; display: flex; justify-content: center; align-items: center;">
     <span onclick="closePreview()" style="position: absolute; top: -20px; right: -20px; font-size: 2rem; color: white; cursor: pointer;">&times;</span>
-    <iframe id="modalFrame" src="" style="width: 100%; height: 80vh; border: none; border-radius: 8px; background: white; display: none;"></iframe>
-    <img id="modalImage" src="" alt="Sertifikat Pratinjau" style="max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 8px; display: none;">
+    <iframe id="modalFrame" src="" style="width: 80vh; height: 90vh; border: none; border-radius: 8px; background: white; display: none;"></iframe>
+    <img id="modalImage" src="" alt="Sertifikat Pratinjau" style="max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 8px; display: none;">
   </div>
 </div>
 

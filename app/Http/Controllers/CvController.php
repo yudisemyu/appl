@@ -30,7 +30,7 @@ class CvController extends Controller
         ];
 
         // Memuat view 'profile.cv' dan mengirimkan data
-        $pdf = Pdf::loadView('cv.show', $data); 
+        $pdf = Pdf::loadView('cv.show', $data)->setPaper('a4', 'portrait'); 
 
         return $pdf->download('CV-' . $user->name . '.pdf');
     }
