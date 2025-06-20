@@ -23,7 +23,11 @@ class User extends Authenticatable
         'password',
         'jurusan',
         'kampus',
-        'no_hp'
+        'no_hp',
+        'biografi',
+        'pendidikan_terakhir',
+        'tahun_pendidikan_terakhir',
+        'path_foto',
     ];
 
     /**

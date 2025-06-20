@@ -330,16 +330,36 @@
         </div>
 
         <div class="form-section">
+            <h2>Pendidikan Terakhir</h2>
+            <div class="form-group">
+                <div class="form-item full-width">
+                    <label for="pendidikan_terakhir">Pendidikan Terakhir</label>
+                    <textarea id="pendidikan_terakhir" name="pendidikan_terakhir">{{ old('pendidikan_terakhir', $user->pendidikan_terakhir) }}</textarea>
+                    @error('biography')
+                        <span style="color:red; font-size:0.85rem;">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-item full-width">
+                    <label for="tahun_pendidikan_terakhir">Tahun</label>
+                    <input type="text" id="tahun_pendidikan_terakhir" name="tahun_pendidikan_terakhir" value="{{ old('tahun_pendidikan_terakhir', $user->tahun_pendidikan_terakhir) }}" placeholder="e.g.2022">
+                    @error('tahun_pendidikan_terakhir')
+                        <span style="color:red; font-size:0.85rem;">{{ $message }}</span>
+                    @enderror
+                </div>
+        </div>
+
+        <div class="form-section">
             <h2>Biografi</h2>
             <div class="form-group">
                 <div class="form-item full-width">
-                    <label for="biography">Deskripsi Diri</label>
-                    <textarea id="biography" name="biography">{{ old('biography', $user->biography) }}</textarea>
-                    @error('biography')
+                    <label for="biografi">Deskripsi Diri</label>
+                    <textarea id="biografi" name="biografi">{{ old('biografi', $user->biografi) }}</textarea>
+                    @error('biografi')
                         <span style="color:red; font-size:0.85rem;">{{ $message }}</span>
                     @enderror
             </div>
         </div>
+
         </div>
 
         <div class="form-actions">
@@ -349,28 +369,6 @@
     </form>
 </div>
 
-<div class="stats">
- <div>
-  <h2>1K++</h2>
-  <p>Mahasiswa aktif</p>
- </div>
- <div>
-  <h2>900++</h2>
-  <p>Sertifikat diunggah</p>
- </div>
- <div>
-  <h2>500++</h2>
-  <p>Skill dicatat</p>
- </div>
- <div>
-  <h2>13</h2>
-  <p>Universitas asal Pengguna</p>
-  </div>
- <div>
-  <h2>96%</h2>
-  <p>Pengguna merasa terbantu</p>
- </div>
-</div>
 
 </body>
 </html>

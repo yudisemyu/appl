@@ -441,9 +441,20 @@
     <div class="data-group">
         <div class="data-item full-width">
             <label>Deskripsi Diri</label>
-            <p class="bio-text">{{ $user->biography ?? 'Belum ada biografi' }}</p>
+            <p class="bio-text">{{ $user->biografi ?? 'Belum ada biografi' }}</p>
         </div>
     </div>
+
+    <h2>Pendidikan</h2>
+    <div class="data-group">
+        <div class="data-item full-width">
+            <label>Pendidikan Terakhir</label>
+            <p class="bio-text">
+            {{ $user->pendidikan_terakhir ?? 'Belum ada Data Pendidikan Terakhir' }} - {{ $user->tahun_pendidikan_terakhir ?? 'Tahun Tidak Tersedia' }}
+            </p>
+        </div>
+    </div>
+
 
     <div class="profile-actions">
         <a href="{{ route('profile.edit') }}" class="btn">Edit Profil</a>
