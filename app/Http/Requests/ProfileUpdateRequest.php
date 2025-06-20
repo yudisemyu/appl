@@ -27,6 +27,9 @@ class ProfileUpdateRequest extends FormRequest
             'jurusan' => ['required', 'string', 'max:255'], // Tambahkan ini
             'kampus' => ['required', 'string', 'max:255'],
             'no_hp' => ['required', 'string', 'max:15'],
+            'biografi' => ['nullable', 'string', 'max:500'],
+            'pendidikan_terakhir' => ['nullable', 'string', 'max:255'],
+            'tahun_pendidikan_terakhir' => ['nullable', 'string', 'max:4'],
         ];
     }
 }
