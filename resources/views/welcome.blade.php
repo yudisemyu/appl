@@ -225,7 +225,7 @@
     </div>
 
     <div class="image-grid">
-        <img src="{{ asset('images/image9.jpg') }}" class="big" alt="Mahasiswa belajar">
+        <img src="{{ asset('images/image9.jpeg') }}" class="big" alt="Mahasiswa belajar">
         <img src="{{ asset('images/image6.jpg') }}" alt="Belajar bersama">
         <img src="{{ asset('images/image10.jpg') }}" alt="Orang tua mendampingi anak">
     </div>
