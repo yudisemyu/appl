@@ -451,10 +451,7 @@
     <div class="data-group">
         <div class="data-item full-width">
             <b>Pendidikan Terakhir</b>
-
-            <p class="bio-text">
-            {{ $user->pendidikan_terakhir ?? 'Belum ada Data Pendidikan Terakhir' }} - {{ $user->tahun_pendidikan_terakhir ?? 'Tahun Tidak Tersedia' }}
-            </p>
+            <p class="bio-text">{{ $user->pendidikan_terakhir ?? 'Belum ada Data Pendidikan Terakhir' }} - {{ $user->tahun_pendidikan_terakhir ?? 'Tahun Tidak Tersedia' }}</p>
         </div>
     </div>
 
